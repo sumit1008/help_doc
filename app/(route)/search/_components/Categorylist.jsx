@@ -10,7 +10,8 @@ import {
   CommandSeparator,
 } from "@/components/ui/command";
 import Image from "next/image";
-import Link from "next/link";
+import Link from 'next/link';
+
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -34,6 +35,8 @@ function Categorylist() {
 
   return (
     <div className="h-screen  mt-5 flex flex-col">
+
+      
       <Command>
         <CommandInput placeholder="Type a command or search..." />
         <CommandList className="overflow-visible">
@@ -42,11 +45,12 @@ function Categorylist() {
             {categoryList &&
               categoryList.map((item, index) => (
                 <CommandItem key={index}>
-                  <Link
-                    href={'/search/'+item?.attributes?.Name}
-                    className={`p-2 flex gap-2 text-[14px] items-center text-blue-600 rounded-md cursor-pointer w-full
+                  <Link 
+                  //this is not working job need to be done in command they are not clickable
+                  href={'/search/'+item.attributes.Name}
+                    className={`p-2 flex gap-2 text-[14px] items-center text-blue-800 font-medium rounded-md cursor-pointer w-full
                     ${category==item.attributes.Name && 'bg-blue-200'}
-                  `}
+                    `}
                   >
                     <Image
                       src={item.attributes.Icon.data[0].attributes.url}
@@ -56,7 +60,7 @@ function Categorylist() {
                     />
                     <label>{item.attributes.Name}</label>
                   </Link>
-                </CommandItem>
+              </CommandItem>
               ))}
           </CommandGroup>
         </CommandList>

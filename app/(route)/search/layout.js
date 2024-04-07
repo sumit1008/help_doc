@@ -10,7 +10,7 @@ function layout({children}) {
         <Categorylist/>
       </div>
 
-      <div className='col-span-3'>
+      <div className='col-span-3 md:col-span-3'>
         {children}
       </div>
 

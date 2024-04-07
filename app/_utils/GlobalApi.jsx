@@ -11,8 +11,20 @@ const axiosClint=axios.create({
 
 const getCategory=()=>axiosClint.get('/categories?populate=*')
 const getDoctorList=()=>axiosClint.get('/doctors?populate=*')
+const getDoctorByCategory=(category)=>axiosClint.get('doctors?filters[categories][Name][$in]='+category+"&populate=*")
+const getDoctorById=(id)=>axiosClint.get('/doctors/'+id+'?populate=*')
+const bookAppointment=(data)=>axiosClint.post('/appointments',data);
+const sendEmail=(data)=>axios.post('/api/sendEmail',data);
+const getUserBookingList=(userEmail)=>axiosClint.get("/appointments?[filters][Email][$eq]="+userEmail+"&populate[doctors][populate][image][populate][0]=url&populate=*")
+const deleteBooking=(id)=>axiosClint.delete('/appointments/'+id)
 
 export default{
     getCategory,
-    getDoctorList
+    getDoctorList,
+    getDoctorByCategory,
+    getDoctorById,
+    bookAppointment,
+    sendEmail,
+    getUserBookingList,
+    deleteBooking
 }
